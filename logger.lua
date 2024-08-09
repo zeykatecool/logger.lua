@@ -134,10 +134,6 @@ function Logger:filterLevel(log_Object, level)
     return filtered
 end
 
-function Logger:removeLog(log_Object, index)
-    table.remove(log_Object.logs, index)
-end
-
 function Logger:write(log_Object)
     local file = io.open(log_Object.file, "w")
     if file then
