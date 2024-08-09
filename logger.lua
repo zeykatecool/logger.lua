@@ -123,16 +123,6 @@ function Logger:print(log_Object)
     end
 end
 
-function Logger:filterLevel(log_Object, level)
-    local filtered = {}
-    for i = #log_Object.logs, 1, -1 do
-        local log = log_Object.logs[i]
-        if log.level >= level then
-            table.insert(filtered, log)
-        end
-    end
-    return filtered
-end
 
 function Logger:write(log_Object)
     local file = io.open(log_Object.file, "w")
