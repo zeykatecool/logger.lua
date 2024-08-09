@@ -1,2 +1,2 @@
 # logger.lua
-Small logger library for lua.
+Small log library for lua.
