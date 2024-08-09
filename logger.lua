@@ -134,4 +134,30 @@ function Logger:filterLevel(log_Object, level)
     return filtered
 end
 
+function Logger:removeLog(log_Object, index)
+    table.remove(log_Object.logs, index)
+end
+
+function Logger:write(log_Object)
+    local file = io.open(log_Object.file, "w")
+    if file then
+        for i = 1, #log_Object.logs do
+            local log = log_Object.logs[i]
+            file:write(string.format(
+                "[%s] [%s] %s\n",
+                os.date("%Y-%m-%d %H:%M:%S", log.time),
+                levels[log.level],
+                log.message
+            ))
+            if log.description ~= "" then
+                file:write("└──" .. log.description .. "\n")
+            end
+        end
+        file:close()
+        return log_Object
+    else
+        return false
+    end
+end
+
 return Logger
