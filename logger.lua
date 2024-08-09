@@ -29,6 +29,15 @@ function Logger:newLogger(file)
     function log_Object:log(message, description, level)
         return Logger:log(log_Object, message, description, level)
     end
+    local r = io.open(file, "r")
+    if r then
+        if #r:read("*a") > 0 then
+            local read = Logger:read(file)
+            if read then
+                log_Object.logs = read
+            end
+        end
+    end
     setmetatable(log_Object, Logger)
     return log_Object
 end
