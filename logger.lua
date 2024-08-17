@@ -122,7 +122,7 @@ function Logger:print(log_Object)
         local log = log_Object.logs[i]
         print(string.format(
             "[%s] [%s] %s",
-            os.date("%Y-%m-%d %H:%M:%S", log.time),
+            os.date("%Y-%m-%d %H:%M:%S", tonumber(log.time)),
             levels[log.level],
             log.message
         ))
